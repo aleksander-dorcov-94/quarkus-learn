@@ -1,13 +1,28 @@
 quarkus:
+  swagger-ui:
+    enabled: true
+  application:
+    name: my-awesome-service
   smallrye-health:
     ui:
       enabled: false
   management:
     enabled: true
-    port: 8080
+    port: 9000
     root-path: /actuator
+  otel:
+    enabled: true
+    exporter:
+      otlp:
+        endpoint: http://localhost:4317
+    sdk:
+      disabled: false
   datasource:
     db-kind: postgresql
+    devservices:
+      port: 5432
+      username: root
+      password: 1234
   flyway:
     migrate-at-start: true
     locations: db/migration

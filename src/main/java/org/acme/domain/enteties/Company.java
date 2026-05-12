@@ -1,5 +1,6 @@
 package org.acme.domain.enteties;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -32,9 +33,11 @@ public class Company extends PanacheEntityBase
 
   private String name;
 
+  @JsonIgnore
   @OneToOne(mappedBy = "company", cascade = CascadeType.ALL)
   private Address address;
 
+  @JsonIgnore
   @OneToMany(mappedBy = "company", cascade = CascadeType.ALL, orphanRemoval = true)
   private List<Employee> employees = new ArrayList<>();
 }

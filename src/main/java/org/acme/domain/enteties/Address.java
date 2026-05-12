@@ -1,5 +1,6 @@
 package org.acme.domain.enteties;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -24,5 +25,6 @@ public class Address extends PanacheEntityBase
 
   @OneToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "company_id", unique = true)
+  @JsonIgnore
   private Company company;
 }

@@ -1,5 +1,6 @@
 package org.acme.domain.enteties;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -31,5 +32,6 @@ public class Employee extends PanacheEntityBase
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "company_id")
+  @JsonIgnore
   private Company company;
 }
