@@ -1,0 +1,22 @@
+quarkus:
+  smallrye-health:
+    ui:
+      enabled: false
+  management:
+    enabled: true
+    port: 8080
+    root-path: /actuator
+  datasource:
+    db-kind: postgresql
+  flyway:
+    migrate-at-start: true
+    locations: db/migration
+    baseline-on-migrate: true
+  hibernate-orm:
+    schema-management:
+      strategy: validate
+    log:
+      sql: true
+      format-sql: true
+
+

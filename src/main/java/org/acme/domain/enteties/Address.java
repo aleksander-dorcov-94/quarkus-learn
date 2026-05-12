@@ -1,0 +1,28 @@
+package org.acme.domain.enteties;
+
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Entity
+@Table(name = "address")
+@Getter
+@Setter
+@NoArgsConstructor
+public class Address extends PanacheEntityBase
+{
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "address_seq")
+  @SequenceGenerator(name = "address_seq", sequenceName = "address_seq", allocationSize = 1)
+  private Long id;
+
+  private String city;
+  private String street;
+
+  @OneToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "company_id", unique = true)
+  private Company company;
+}
