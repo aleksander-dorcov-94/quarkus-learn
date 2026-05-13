@@ -1,6 +1,5 @@
 package org.acme.rest.advice;
 
-import jakarta.inject.Inject;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.ValidationException;
 import jakarta.ws.rs.core.Request;
