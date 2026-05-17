@@ -103,7 +103,7 @@ echo -e "${CYAN}📦 Setting up Flathub and installing GUI Apps...${NC}"
 sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
 #Flatsteal
-flatpak install flathub com.github.tchx84.Flatseal
+flatpak install -y flathub com.github.tchx84.Flatseal
 
 # Browsers
 sudo flatpak install -y flathub com.google.Chrome
