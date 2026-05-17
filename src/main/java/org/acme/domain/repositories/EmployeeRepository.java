@@ -5,6 +5,6 @@ import jakarta.enterprise.context.ApplicationScoped;
 import org.acme.domain.enteties.Employee;
 
 @ApplicationScoped
-public class EmployeeRepository implements PanacheRepository<Employee>
-{
+public class EmployeeRepository implements PanacheRepository<Employee> {
+
 }

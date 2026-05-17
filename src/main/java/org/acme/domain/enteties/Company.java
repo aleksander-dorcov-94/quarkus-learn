@@ -23,21 +23,20 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Company extends PanacheEntityBase
-{
+public class Company extends PanacheEntityBase {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "company_seq")
-  @SequenceGenerator(name = "company_seq", sequenceName = "company_seq", allocationSize = 1)
-  private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "company_seq")
+    @SequenceGenerator(name = "company_seq", sequenceName = "company_seq", allocationSize = 1)
+    private Long id;
 
-  private String name;
+    private String name;
 
-  @JsonIgnore
-  @OneToOne(mappedBy = "company", cascade = CascadeType.ALL)
-  private Address address;
+    @JsonIgnore
+    @OneToOne(mappedBy = "company", cascade = CascadeType.ALL)
+    private Address address;
 
-  @JsonIgnore
-  @OneToMany(mappedBy = "company", cascade = CascadeType.ALL, orphanRemoval = true)
-  private List<Employee> employees = new ArrayList<>();
+    @JsonIgnore
+    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Employee> employees = new ArrayList<>();
 }

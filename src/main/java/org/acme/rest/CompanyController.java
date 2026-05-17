@@ -24,28 +24,28 @@ import org.jboss.resteasy.reactive.RestResponse;
 @RunOnVirtualThread
 public class CompanyController {
 
-  @Inject
-  CompanyService companyService;
+    @Inject
+    CompanyService companyService;
 
-  @POST
-  public RestResponse<Company> createCompany(@Valid CreateCompanyRequest request) {
-    Company company = companyService.createCompany(request);
-    return RestResponse.status(Response.Status.CREATED, company);
-  }
+    @POST
+    public RestResponse<Company> createCompany(@Valid CreateCompanyRequest request) {
+        Company company = companyService.createCompany(request);
+        return RestResponse.status(Response.Status.CREATED, company);
+    }
 
-  @POST
-  @Path("/address")
-  public RestResponse<Address> addAddress(@Valid CreateAddressRequest request) {
-    return companyService.addAddress(request)
-      .map(address -> RestResponse.status(Response.Status.CREATED, address))
-      .orElse(RestResponse.status(Response.Status.NOT_FOUND));
-  }
+    @POST
+    @Path("/address")
+    public RestResponse<Address> addAddress(@Valid CreateAddressRequest request) {
+        return companyService.addAddress(request)
+                .map(address -> RestResponse.status(Response.Status.CREATED, address))
+                .orElse(RestResponse.status(Response.Status.NOT_FOUND));
+    }
 
-  @POST
-  @Path("/employee")
-  public RestResponse<Employee> addEmployee(@Valid CreateEmployeeRequest request) {
-    return companyService.addEmployee(request)
-      .map(employee -> RestResponse.status(Response.Status.CREATED, employee))
-      .orElse(RestResponse.status(Response.Status.NOT_FOUND));
-  }
+    @POST
+    @Path("/employee")
+    public RestResponse<Employee> addEmployee(@Valid CreateEmployeeRequest request) {
+        return companyService.addEmployee(request)
+                .map(employee -> RestResponse.status(Response.Status.CREATED, employee))
+                .orElse(RestResponse.status(Response.Status.NOT_FOUND));
+    }
 }

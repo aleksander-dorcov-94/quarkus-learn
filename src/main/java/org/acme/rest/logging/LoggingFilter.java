@@ -13,47 +13,38 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 
 @Slf4j
-public class LoggingFilter
-{
+public class LoggingFilter {
 
-  @ServerRequestFilter
-  public void logRequest(ContainerRequestContext requestContext) throws IOException
-  {
-    UriInfo uriInfo = requestContext.getUriInfo();
-    String method = requestContext.getMethod();
-    String path = uriInfo.getPath();
+    @ServerRequestFilter
+    public void logRequest(ContainerRequestContext requestContext) throws IOException {
+        UriInfo uriInfo = requestContext.getUriInfo();
+        String method = requestContext.getMethod();
+        String path = uriInfo.getPath();
 
-    InputStream entityStream = requestContext.getEntityStream();
+        InputStream entityStream = requestContext.getEntityStream();
 
-    if (entityStream != null)
-    {
-      byte[] bytes = entityStream.readAllBytes();
-      String body = new String(bytes, StandardCharsets.UTF_8);
+        if (entityStream != null) {
+            byte[] bytes = entityStream.readAllBytes();
+            String body = new String(bytes, StandardCharsets.UTF_8);
 
-      if (!body.isBlank())
-      {
-        log.info("--> {} {} | Body: {}", method, path, body);
-      }
-      else
-      {
-        log.info("--> {} {}", method, path);
-      }
+            if (!body.isBlank()) {
+                log.info("--> {} {} | Body: {}", method, path, body);
+            } else {
+                log.info("--> {} {}", method, path);
+            }
 
-      requestContext.setEntityStream(new ByteArrayInputStream(bytes));
+            requestContext.setEntityStream(new ByteArrayInputStream(bytes));
+        } else {
+            log.info("--> {} {}", method, path);
+        }
     }
-    else
-    {
-      log.info("--> {} {}", method, path);
+
+    @ServerResponseFilter
+    public void logResponse(ContainerRequestContext requestContext, ContainerResponseContext responseContext) {
+        UriInfo uriInfo = requestContext.getUriInfo();
+        String path = uriInfo.getPath();
+        int status = responseContext.getStatus();
+
+        log.info("<-- {} {}", status, path);
     }
-  }
-
-  @ServerResponseFilter
-  public void logResponse(ContainerRequestContext requestContext, ContainerResponseContext responseContext)
-  {
-    UriInfo uriInfo = requestContext.getUriInfo();
-    String path = uriInfo.getPath();
-    int status = responseContext.getStatus();
-
-    log.info("<-- {} {}", status, path);
-  }
 }

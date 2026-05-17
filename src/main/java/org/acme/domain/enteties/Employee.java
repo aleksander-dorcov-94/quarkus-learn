@@ -20,18 +20,17 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Employee extends PanacheEntityBase
-{
+public class Employee extends PanacheEntityBase {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "employee_seq")
-  @SequenceGenerator(name = "employee_seq", sequenceName = "employee_seq", allocationSize = 1)
-  private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "employee_seq")
+    @SequenceGenerator(name = "employee_seq", sequenceName = "employee_seq", allocationSize = 1)
+    private Long id;
 
-  private String name;
+    private String name;
 
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "company_id")
-  @JsonIgnore
-  private Company company;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "company_id")
+    @JsonIgnore
+    private Company company;
 }

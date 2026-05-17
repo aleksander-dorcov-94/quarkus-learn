@@ -5,6 +5,6 @@ import jakarta.enterprise.context.ApplicationScoped;
 import org.acme.domain.enteties.Address;
 
 @ApplicationScoped
-public class AddressRepository implements PanacheRepository<Address>
-{
+public class AddressRepository implements PanacheRepository<Address> {
+
 }

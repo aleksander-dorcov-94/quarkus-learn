@@ -13,75 +13,70 @@ import org.jboss.resteasy.reactive.server.ServerExceptionMapper;
 
 @Slf4j
 @RequiredArgsConstructor
-public class GlobalExceptionHandler
-{
-  private final UriInfo uriInfo;
-  private final Request request;
+public class GlobalExceptionHandler {
 
-  @ServerExceptionMapper
-  public RestResponse<ErrorResponse> handleInvalidCompany(InvalidCompanyException ex)
-  {
+    private final UriInfo uriInfo;
+    private final Request request;
 
-    log.info(request.getMethod() + " " + uriInfo.getAbsolutePath() + " " + ex.getMessage());
-    ErrorResponse error = ErrorResponse.builder()
-      .status(422)
-      .error("Business Rule Violation")
-      .message(ex.getMessage())
-      .path(uriInfo.getPath())
-      .build();
+    @ServerExceptionMapper
+    public RestResponse<ErrorResponse> handleInvalidCompany(InvalidCompanyException ex) {
 
-    return RestResponse.status(Response.Status.BAD_REQUEST, error);
-  }
+        log.info(request.getMethod() + " " + uriInfo.getAbsolutePath() + " " + ex.getMessage());
+        ErrorResponse error = ErrorResponse.builder()
+                .status(422)
+                .error("Business Rule Violation")
+                .message(ex.getMessage())
+                .path(uriInfo.getPath())
+                .build();
 
-  @ServerExceptionMapper
-  public RestResponse<ErrorResponse> handleIllegalArgument(IllegalArgumentException ex)
-  {
-    ErrorResponse error = ErrorResponse.builder()
-      .status(Response.Status.BAD_REQUEST.getStatusCode())
-      .error("Bad Request")
-      .message(ex.getMessage())
-      .path(uriInfo.getPath())
-      .build();
+        return RestResponse.status(Response.Status.BAD_REQUEST, error);
+    }
 
-    return RestResponse.status(Response.Status.BAD_REQUEST, error);
-  }
+    @ServerExceptionMapper
+    public RestResponse<ErrorResponse> handleIllegalArgument(IllegalArgumentException ex) {
+        ErrorResponse error = ErrorResponse.builder()
+                .status(Response.Status.BAD_REQUEST.getStatusCode())
+                .error("Bad Request")
+                .message(ex.getMessage())
+                .path(uriInfo.getPath())
+                .build();
 
-  @ServerExceptionMapper
-  public RestResponse<ErrorResponse> handleValidation(ValidationException ex)
-  {
-    ErrorResponse error = ErrorResponse.builder()
-      .status(Response.Status.BAD_REQUEST.getStatusCode())
-      .error("Validation Failed")
-      .message(ex.getMessage())
-      .path(uriInfo.getPath())
-      .build();
+        return RestResponse.status(Response.Status.BAD_REQUEST, error);
+    }
 
-    return RestResponse.status(Response.Status.BAD_REQUEST, error);
-  }
+    @ServerExceptionMapper
+    public RestResponse<ErrorResponse> handleValidation(ValidationException ex) {
+        ErrorResponse error = ErrorResponse.builder()
+                .status(Response.Status.BAD_REQUEST.getStatusCode())
+                .error("Validation Failed")
+                .message(ex.getMessage())
+                .path(uriInfo.getPath())
+                .build();
 
-  @ServerExceptionMapper
-  public RestResponse<ErrorResponse> handleEntityNotFound(EntityNotFoundException ex)
-  {
-    ErrorResponse error = ErrorResponse.builder()
-      .status(Response.Status.NOT_FOUND.getStatusCode())
-      .error("Not Found")
-      .message(ex.getMessage() != null ? ex.getMessage() : "The requested resource was not found")
-      .path(uriInfo.getPath())
-      .build();
+        return RestResponse.status(Response.Status.BAD_REQUEST, error);
+    }
 
-    return RestResponse.status(Response.Status.NOT_FOUND, error);
-  }
+    @ServerExceptionMapper
+    public RestResponse<ErrorResponse> handleEntityNotFound(EntityNotFoundException ex) {
+        ErrorResponse error = ErrorResponse.builder()
+                .status(Response.Status.NOT_FOUND.getStatusCode())
+                .error("Not Found")
+                .message(ex.getMessage() != null ? ex.getMessage() : "The requested resource was not found")
+                .path(uriInfo.getPath())
+                .build();
 
-  @ServerExceptionMapper
-  public RestResponse<ErrorResponse> handleGeneralException(Exception ex)
-  {
-    ErrorResponse error = ErrorResponse.builder()
-      .status(Response.Status.INTERNAL_SERVER_ERROR.getStatusCode())
-      .error("Internal Server Error")
-      .message("An unexpected error occurred: " + ex.getMessage())
-      .path(uriInfo.getPath())
-      .build();
+        return RestResponse.status(Response.Status.NOT_FOUND, error);
+    }
 
-    return RestResponse.status(Response.Status.INTERNAL_SERVER_ERROR, error);
-  }
+    @ServerExceptionMapper
+    public RestResponse<ErrorResponse> handleGeneralException(Exception ex) {
+        ErrorResponse error = ErrorResponse.builder()
+                .status(Response.Status.INTERNAL_SERVER_ERROR.getStatusCode())
+                .error("Internal Server Error")
+                .message("An unexpected error occurred: " + ex.getMessage())
+                .path(uriInfo.getPath())
+                .build();
+
+        return RestResponse.status(Response.Status.INTERNAL_SERVER_ERROR, error);
+    }
 }

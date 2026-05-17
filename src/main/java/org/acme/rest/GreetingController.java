@@ -8,13 +8,11 @@ import jakarta.ws.rs.core.MediaType;
 
 @Path("/hello")
 @RunOnVirtualThread
-public class GreetingController
-{
+public class GreetingController {
 
-  @GET
-  @Produces(MediaType.TEXT_PLAIN)
-  public String hello()
-  {
-    return "Hello from Quarkus REST";
-  }
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    public String hello() {
+        return "Hello from Quarkus REST";
+    }
 }

@@ -1,3 +1,6 @@
+https://github.com/aleksander-dorcov-94/quarkus-learn.git
+
+
 http://localhost:8080/q/swagger-ui
 http://localhost:8080/q/health-ui
 
