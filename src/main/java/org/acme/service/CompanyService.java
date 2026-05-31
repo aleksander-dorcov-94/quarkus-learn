@@ -53,8 +53,7 @@ public class CompanyService {
 
     @Transactional
     public Optional<Employee> addEmployee(CreateEmployeeRequest request) {
-        Company company = companyRepository.getEntityManager()
-                .getReference(Company.class, request.companyId());
+        Company company = companyRepository.getEntityManager().getReference(Company.class, request.companyId());
         if (company == null) {
             return Optional.empty();
         }

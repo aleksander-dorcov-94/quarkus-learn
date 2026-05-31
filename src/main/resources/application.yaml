@@ -5,11 +5,7 @@ quarkus:
     name: my-awesome-service
   smallrye-health:
     ui:
-      enabled: false
-  management:
-    enabled: true
-    port: 9000
-    root-path: /actuator
+      enabled: true
   otel:
     enabled: true
     exporter:
@@ -33,5 +29,4 @@ quarkus:
     log:
       sql: true
       format-sql: true
-
 
