@@ -6,9 +6,7 @@ import jakarta.validation.constraints.NotNull;
 public record CreateEmployeeRequest(
         @NotBlank(message = "Employee name is required")
         String name,
-
         @NotNull(message = "Employee must belong to a company")
-        Long companyId
-) {
+        Long companyId) {
 
 }

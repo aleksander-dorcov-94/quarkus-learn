@@ -2,6 +2,7 @@ package org.acme;
 
 import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.http.ContentType;
+import io.restassured.internal.path.json.JSONAssertion;
 import io.restassured.response.Response;
 import org.acme.rest.dto.CreateAddressRequest;
 import org.acme.rest.dto.CreateCompanyRequest;
@@ -47,7 +48,6 @@ public class CompanyControllerTest {
     @Order(2)
     public void testAddAddress() {
         var request = new CreateAddressRequest(savedCompanyId, "Sofia", "Vitosha Blvd");
-
         given()
                 .contentType(ContentType.JSON)
                 .body(request)
